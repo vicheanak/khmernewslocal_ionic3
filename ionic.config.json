@@ -1,0 +1,8 @@
+{
+  "name": "khmernewslocal",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "pro_id": "ea4cfe78"
+}

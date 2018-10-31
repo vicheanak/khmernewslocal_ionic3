@@ -1,0 +1,30 @@
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar color="danger">
+      <ion-title>បញ្ជី</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        {{p.title}}
+      </button>
+      <ion-item-divider color="light">V 0.0.12</ion-item-divider>
+        <button menuClose ion-item (click)="pushSavePage()">
+            ចំណាំ អត្ថបទ
+        </button>
+        <button menuClose ion-item (click)="pushContact()">
+            ទំនាក់ទំនង
+        </button>
+        <button menuClose ion-item (click)="rate()">
+            ផ្តល់ពិន្ទុ
+        </button>
+      
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" [rootParams]="postId" #content swipeBackEnabled="false"></ion-nav>
