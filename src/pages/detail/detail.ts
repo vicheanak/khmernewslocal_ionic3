@@ -126,13 +126,13 @@ export class DetailPage {
     let bannerAd;
     if(this.platform.is('android')) 
     {
-      videoAd = 'ca-app-pub-3976244179029334/5123051820';
-      bannerAd = 'ca-app-pub-3976244179029334/2760612369';
+      videoAd = 'ca-app-pub-3976244179029334/4668330646';
+      bannerAd = 'ca-app-pub-3976244179029334/1692767229';
     } 
     else if (this.platform.is('ios')) 
     {
-      videoAd = 'ca-app-pub-3976244179029334/4184689885';
-      bannerAd = 'ca-app-pub-3976244179029334/5014130799';
+      videoAd = 'ca-app-pub-3976244179029334/4019138543';
+      bannerAd = 'ca-app-pub-3976244179029334/4640410486';
     }
 
     this.admob.prepareRewardVideoAd({adId: videoAd})

@@ -52,10 +52,23 @@ export class MyApp {
     // used for an example of ngFor and navigation
 
     this.pages = [
-      { title: 'ទំព័រដំបូង', component: HomePage, categoryId: null },
-      { title: 'ពត៌មាន Live', component: HomePage, categoryId: 2  },
-      { title: 'សុខភាព & ជីវិត', component: HomePage, categoryId: 4  },
+      {title: 'ទំព័រដំបូង', component: HomePage, categoryId: null },
+      {title: 'កោះសន្តិភាព' , component: HomePage, categoryId: 1},
+      {title: 'ដើមអំពិល' , component: HomePage, categoryId: 35},
+      {title: 'រស្មីកម្ពុជា' , component: HomePage, categoryId: 36},
+      {title: 'ភ្នំពេញថ្មី' , component: HomePage, categoryId: 37},
+      {title: 'កម្ពុជាថ្មី' , component: HomePage, categoryId: 38},
+      {title: 'Fresh News', component: HomePage, categoryId: 39},
+      {title: 'CEN' , component: HomePage, categoryId: 40},
+      {title: 'ភ្នំពេញប៉ុស្ត៍' , component: HomePage, categoryId: 41},
+      {title: 'វាយោ' , component: HomePage, categoryId: 42},
+      {title: 'VOA' , component: HomePage, categoryId: 43},
+      {title: 'RFA អាសុីសេរី', component: HomePage, categoryId: 44},
+      {title: 'RFI បារាំង', component: HomePage, categoryId: 45},
+      {title: 'CNC' , component: HomePage, categoryId: 46},
+      {title: 'ថ្មីថ្មី' , component: HomePage, categoryId: 47},
     ];
+    
   }
 
   initializeApp() {
@@ -215,14 +228,14 @@ export class MyApp {
   async rateAuto(){
     try {
         this.appRate.preferences = {
-          displayAppName: 'Khmer News Live 24',
+          displayAppName: 'Khmer News Local',
           usesUntilPrompt: 2,
           simpleMode: true,
           promptAgainForEachNewVersion: false,
           useCustomRateDialog: true,
           storeAppURL: {
             ios: '1440587029',
-            android: 'market://details?id=com.khmernewslive24.app'
+            android: 'market://details?id=com.khmernewslocal.app'
           },
           customLocale: {
             title: 'ចូលចិត្ត %@ ដែរទេ?',
@@ -250,7 +263,7 @@ export class MyApp {
 
   async rate(){
     this.appRate.preferences = {
-      displayAppName: 'Khmer News Live 24',
+      displayAppName: 'Khmer News Local',
       usesUntilPrompt: 2,
       simpleMode: true,
       promptAgainForEachNewVersion: false,

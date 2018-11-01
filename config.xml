@@ -105,6 +105,11 @@
         <link-domain value="khmernewslocal.app.link" />
         <ios-team-release value="S6V44TBNPC" />
     </branch-config>
+    <plugin name="cordova-clipboard" spec="1.2.1" />
+    <plugin name="cordova-plugin-x-toast" spec="2.7.0" />
+    <plugin name="cordova-sqlite-storage" spec="2.5.0" />
+    <plugin name="com-sarriaroman-photoviewer" spec="1.1.18" />
+    <plugin name="cordova-plugin-youtube-video-player" spec="2.0.0" />
     <plugin name="cordova-plugin-ionic" spec="5.2.5">
         <variable name="APP_ID" value="ea4cfe78" />
         <variable name="CHANNEL_NAME" value="Master" />
@@ -113,10 +118,5 @@
         <variable name="MAX_STORE" value="2" />
         <variable name="MIN_BACKGROUND_DURATION" value="30" />
     </plugin>
-    <plugin name="cordova-clipboard" spec="1.2.1" />
-    <plugin name="cordova-plugin-x-toast" spec="2.7.0" />
-    <plugin name="cordova-sqlite-storage" spec="2.5.0" />
-    <plugin name="com-sarriaroman-photoviewer" spec="1.1.18" />
-    <plugin name="cordova-plugin-youtube-video-player" spec="2.0.0" />
     <engine name="android" spec="7.1.1" />
 </widget>

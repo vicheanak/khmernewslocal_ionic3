@@ -45,14 +45,21 @@ export class HomePage {
 		this.categoryId = navParams.get('categoryId');
 		
 		let arrayTitle = [
-		{id: null, title: 'Khmer News Local'},
-		{id: 2, title: 'ពត៌មាន Live'},
-		{id: 3, title: 'សិល្បះ & កំសាន្ត'},
-		{id: 4, title: 'សុខភាព & ជីវិត'},
-		{id: 1, title: 'យល់ដឹង'},
-		{id: 6, title: 'ប្លែកៗ'},
-		{id: 16, title: 'កីឡា'},
-		{id: 17, title: 'បច្ចេកវិទ្យា'}
+			{title: 'ទំព័រដំបូង', id: null},
+			{title: 'កោះសន្តិភាព' , id: 1},
+			{title: 'ដើមអំពិល' , id: 35},
+			{title: 'រស្មីកម្ពុជា' , id: 36},
+			{title: 'ភ្នំពេញថ្មី' , id: 37},
+			{title: 'កម្ពុជាថ្មី' , id: 38},
+			{title: 'Fresh News', id: 39},
+			{title: 'CEN' , id: 40},
+			{title: 'ភ្នំពេញប៉ុស្ត៍' , id: 41},
+			{title: 'វាយោ' , id: 42},
+			{title: 'VOA' , id: 43},
+			{title: 'RFA អាសុីសេរី', id: 44},
+			{title: 'RFI បារាំង', id: 45},
+			{title: 'CNC' , id: 46},
+			{title: 'ថ្មីថ្មី' , id: 47}
 		];
 
 		for (let i = 0; i < arrayTitle.length; i ++){
