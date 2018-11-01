@@ -49,15 +49,15 @@ import { PhotoViewer } from '@ionic-native/photo-viewer';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 
 const firebase = {
-  apiKey: "AIzaSyA77tgx5xc_T6hdBPS-gcaR1NBEW3Oe6lo",
-  authDomain: "khmer-news-live-24.firebaseapp.com",
-  databaseURL: "https://khmer-news-live-24.firebaseio.com",
-  projectId: "khmer-news-live-24",
-  storageBucket: "khmer-news-live-24.appspot.com",
-  messagingSenderId: "1092261335543"
+    apiKey: "AIzaSyAe10gJ9pbmHhVmd0vqYYyUdSR0Xso3EyE",
+    authDomain: "khmer-news-local.firebaseapp.com",
+    databaseURL: "https://khmer-news-local.firebaseio.com",
+    projectId: "khmer-news-local",
+    storageBucket: "khmer-news-local.appspot.com",
+    messagingSenderId: "678756478903"
 }
 
-Pro.init('4dc427d8', {
+Pro.init('ea4cfe78', {
   appVersion: '0.0.12'
 })
 
@@ -98,7 +98,7 @@ export class MyErrorHandler implements ErrorHandler {
     AngularFirestoreModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot({
-      name: '__khmernewslive',
+      name: '__khmernewslocal',
          driverOrder: ['indexeddb', 'sqlite', 'websql']
     }),
     PipesModule

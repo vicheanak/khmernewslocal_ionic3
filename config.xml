@@ -86,7 +86,7 @@
     <plugin name="cordova-plugin-x-socialsharing" spec="5.4.1" />
     <plugin name="cordova-plugin-ionic-webview" spec="^2.2.0" />
     <plugin name="cordova-plugin-firebase" spec="2.0.5" />
-    <allow-navigation href="http://192.168.8.100:8100" sessionid="1c4bcf0e" />
+    <allow-navigation href="*://*:8100" sessionid="1c4bcf0e" />
     <allow-navigation href="*://*.youtube.com/*" />
     <allow-navigation href="*://*.facebook.com/*" />
     <plugin name="cordova-plugin-device" spec="^2.0.2" />
@@ -100,7 +100,7 @@
     <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
     <plugin name="branch-cordova-sdk" spec="~2.6.24" />
     <branch-config>
-        <branch-key value="key_live_leKpjCu7Ry6CklliGho9qnpdryljE4k5" />
+        <branch-key value="key_live_lkQmfrUnHRzhvvzi3I4rWnkfsBdMXBf6" />
         <uri-scheme value="khmernewslocal" />
         <link-domain value="khmernewslocal.app.link" />
         <ios-team-release value="S6V44TBNPC" />
@@ -118,4 +118,5 @@
     <plugin name="cordova-sqlite-storage" spec="2.5.0" />
     <plugin name="com-sarriaroman-photoviewer" spec="1.1.18" />
     <plugin name="cordova-plugin-youtube-video-player" spec="2.0.0" />
+    <engine name="android" spec="7.1.1" />
 </widget>

@@ -27,7 +27,7 @@ interface Post {
 export class WpProvider {
 
 	public posts: Array<{  id: number; title: string; category: string; content: string; image: string; date: string; link: string, app_link: string, is_saved: boolean}> = [];
-	private wp: any = new WPAPI({ endpoint: 'https://www.khmernewslive24.com/?_embed&rest_route=/' });
+	private wp: any = new WPAPI({ endpoint: 'https://www.khmernewslocal.com/?_embed&rest_route=/' });
 	public post: any;
 	public keys:  any = new Array();
 
@@ -41,8 +41,9 @@ export class WpProvider {
 
 
 		return new Promise((resolve, reject) => {
+			
 			this.wp.posts().perPage(20).categories(category_id).then( (data) => {
-
+				
 				this.posts = [];
 				let posts = [];
 				
@@ -113,6 +114,7 @@ export class WpProvider {
 
 			}).catch(function( err ) {
 				// handle error
+				this.presentAlert('error wordpress', err);
 			});
 		});
 	}

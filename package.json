@@ -44,6 +44,7 @@
     "call-number": "1.0.1",
     "com-sarriaroman-photoviewer": "1.1.18",
     "cordova": "8.1.2",
+    "cordova-android": "7.1.1",
     "cordova-clipboard": "1.2.1",
     "cordova-plugin-admobpro": "2.32.6",
     "cordova-plugin-appavailability": "0.4.2",
@@ -140,6 +141,8 @@
       "com-sarriaroman-photoviewer": {},
       "cordova-plugin-youtube-video-player": {}
     },
-    "platforms": []
+    "platforms": [
+      "android"
+    ]
   }
 }

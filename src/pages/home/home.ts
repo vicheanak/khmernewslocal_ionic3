@@ -45,7 +45,7 @@ export class HomePage {
 		this.categoryId = navParams.get('categoryId');
 		
 		let arrayTitle = [
-		{id: null, title: 'Khmer News Live 24'},
+		{id: null, title: 'Khmer News Local'},
 		{id: 2, title: 'ពត៌មាន Live'},
 		{id: 3, title: 'សិល្បះ & កំសាន្ត'},
 		{id: 4, title: 'សុខភាព & ជីវិត'},
@@ -61,11 +61,21 @@ export class HomePage {
 			}
 		}
 
+
+
 		this.storage.ready().then(() => {
+			
 			this.wpProvider.refresh(this.categoryId).then((posts) => {
+				
 				this.posts = posts;	
 				this.isReady = true;
+			}).catch((err) => {
+				
+				Pro.monitoring.exception(err);
 			});	
+		}).catch((err) => {
+			
+			Pro.monitoring.exception(err);
 		});
 
 		
@@ -180,7 +190,7 @@ export class HomePage {
 
 
 	copy(post){
-		this.clipboard.copy(post.title + '\n\n>>> ដោនឡូត Khmer News Live ក្នុង Play Store ឥឡូវនេះ FREE!!! \n' + post.app_link);
+		this.clipboard.copy(post.title + '\n\n>>> ដោនឡូត Khmer News Local ក្នុង Play Store ឥឡូវនេះ FREE!!! \n' + post.app_link);
 		this.toast.show('Copied...', '1500', 'center').subscribe(
 		  toast => {
 		    
