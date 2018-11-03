@@ -7,9 +7,9 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { DetailPage } from '../pages/detail/detail';
 import { SavePage } from '../pages/save/save';
+import { SubscribePage } from '../pages/subscribe/subscribe';
 
 import { FcmProvider } from '../providers/fcm/fcm';
-
 import { ToastController } from 'ionic-angular';
 import { Subject } from 'rxjs/Subject';
 import { tap } from 'rxjs/operators';
@@ -18,7 +18,9 @@ import { AppRate } from '@ionic-native/app-rate';
 import { Pro } from '@ionic/pro';
 import { ContactPage } from '../pages/contact/contact';
 import { BranchIo } from '@ionic-native/branch-io';
-
+import { ReportProvider } from '../providers/report/report';
+import { InAppPurchase } from '@ionic-native/in-app-purchase';
+import { Storage } from '@ionic/storage';
 // import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 
 
@@ -45,7 +47,10 @@ export class MyApp {
     public splashScreen: SplashScreen,
     private admob: AdMobPro,
     private appRate: AppRate,
-    private branch: BranchIo
+    private branch: BranchIo,
+    private report: ReportProvider,
+    private iap: InAppPurchase,
+    private storage: Storage,
     ) {
     this.initializeApp();
 
@@ -78,6 +83,7 @@ export class MyApp {
 
       this.fcm.getToken();
 
+     
       try{
         this.fcm.listenToNotifications().subscribe((response) => {
           
@@ -98,7 +104,22 @@ export class MyApp {
           }
         });
       }catch(err){
-        this.presentAlert('Error Token FCM', err);
+        
+        this.report.sendPostRequest({
+          'subject' : 'Error! - KNL refresh()',
+          'type' : '',
+          'crawl_link' : '',
+          'post_link' : '',
+          'title' : '',
+          'content' : '',
+          'iframe' : '',
+          'app_link' : '',
+          'notification' : '',
+          'featured_image' : '',
+          'detail_message' : JSON.stringify(err),
+        }).then((data) => {
+        
+        });
       }
       
       this.rootPage = HomePage;
@@ -120,10 +141,42 @@ export class MyApp {
             });
           }
         }
+      }).catch((err) => {
+        this.report.sendPostRequest({
+          'subject' : 'Error! - KNLOCAL App Component Fail initSession()',
+          'type' : '',
+          'crawl_link' : '',
+          'post_link' : '',
+          'title' : '',
+          'content' : '',
+          'iframe' : '',
+          'app_link' : '',
+          'notification' : '',
+          'featured_image' : '',
+          'detail_message' : JSON.stringify(err),
+        }).then((data) => {
+        
+        });
       });
       
 
-      this.showAds();
+      this.storage.get('purchased').then((val) => {
+        if (val){
+          let purchased = JSON.parse(val);
+          this.iap.consume(purchased.productType, purchased.receipt, purchased.signature)
+          .then((data) => {
+            //Already subscribe
+          })
+          .catch((err) => {
+            this.showAds();  
+          });
+        }
+        else{
+          this.showAds();  
+        }
+      });
+
+      
       
       this.rateAuto();
 
@@ -257,7 +310,21 @@ export class MyApp {
         this.appRate.promptForRating(false);
     } catch(err){
         
-        Pro.monitoring.exception(err);
+        this.report.sendPostRequest({
+          'subject' : 'Error! - KNLOCAL rate()',
+          'type' : '',
+          'crawl_link' : '',
+          'post_link' : '',
+          'title' : '',
+          'content' : '',
+          'iframe' : '',
+          'app_link' : '',
+          'notification' : '',
+          'featured_image' : '',
+          'detail_message' : JSON.stringify(err),
+        }).then((data) => {
+        
+        });
     }
   }
 
@@ -292,6 +359,51 @@ export class MyApp {
     this.appRate.promptForRating(true);
   }
   
+  
+
+  async subscribe(){
+    this.iap.getProducts(['com.khmernewslocal.subscription']).then((products) => {
+       this.iap.subscribe(products[0]['productId']).then((data)=> {
+          this.presentAlert("SUBSCRIBE", JSON.stringify(data));
+          // transactionId: string, receipt: string, signature: string, productType: string
+          // consume(productType, receipt, signature)
+        })
+        .catch((err)=> {
+          this.report.sendPostRequest({
+            'subject' : 'Error! - KNLOCAL subscribe app component()',
+            'type' : '',
+            'crawl_link' : '',
+            'post_link' : '',
+            'title' : '',
+            'content' : '',
+            'iframe' : '',
+            'app_link' : '',
+            'notification' : '',
+            'featured_image' : '',
+            'detail_message' : JSON.stringify(err),
+          }).then((data) => {
+          
+          });
+        });
+     }).catch((err) => {
+       this.report.sendPostRequest({
+          'subject' : 'Error! - KNLOCAL subscribe get product component()',
+          'type' : '',
+          'crawl_link' : '',
+          'post_link' : '',
+          'title' : '',
+          'content' : '',
+          'iframe' : '',
+          'app_link' : '',
+          'notification' : '',
+          'featured_image' : '',
+          'detail_message' : JSON.stringify(err),
+        }).then((data) => {
+        
+        });
+     });
+    
+  }
 
 
   openPage(page) {
@@ -308,6 +420,9 @@ export class MyApp {
 
   pushSavePage(){
     this.nav.setRoot(SavePage);
+  }
+  pushSubscribePage(){
+   this.nav.setRoot(SubscribePage); 
   }
 
 }

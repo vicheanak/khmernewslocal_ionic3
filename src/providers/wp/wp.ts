@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Pro } from '@ionic/pro';
 import {AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import {ReportProvider} from '../report/report';
 
 
 /*
@@ -33,20 +34,22 @@ export class WpProvider {
 
 	public saved_articles: any = [];
 
-	constructor(public alertCtrl: AlertController, private storage: Storage) {
+	constructor(public report: ReportProvider, public alertCtrl: AlertController, private storage: Storage) {
 		console.log('Hello WpProvider Provider');
+		
 	}
 
 	refresh(category_id): Promise<any[]> {
 
 
 		return new Promise((resolve, reject) => {
-			
 			this.wp.posts().perPage(20).categories(category_id).then( (data) => {
-				
+
 				this.posts = [];
 				let posts = [];
 				
+
+
 				this.storage.ready().then(() => {
 					this.storage.keys().then((val) => {
 						
@@ -113,8 +116,23 @@ export class WpProvider {
 
 
 			}).catch(function( err ) {
-				// handle error
-				this.presentAlert('error wordpress', err);
+				reject(err);
+				this.report.sendPostRequest({
+					'subject' : 'Error! - KNL refresh()',
+					'type' : '',
+					'crawl_link' : '',
+					'post_link' : '',
+					'title' : '',
+					'content' : '',
+					'iframe' : '',
+					'app_link' : '',
+					'notification' : '',
+					'featured_image' : '',
+					'detail_message' : JSON.stringify(err),
+				}).then((data) => {
+				
+				});
+
 			});
 		});
 	}
@@ -190,7 +208,22 @@ export class WpProvider {
 				
 
 			}).catch(function( err ) {
-				// handle error
+				reject(err);
+				this.report.sendPostRequest({
+					'subject' : 'Error! - KNL getPosts() function',
+					'type' : '',
+					'crawl_link' : '',
+					'post_link' : '',
+					'title' : '',
+					'content' : '',
+					'iframe' : '',
+					'app_link' : '',
+					'notification' : '',
+					'featured_image' : '',
+					'detail_message' : JSON.stringify(err),
+				}).then((data) => {
+				
+				});
 			});
 		});
 	}
@@ -270,7 +303,22 @@ export class WpProvider {
 				resolve(this.post);
 
 			}).catch(function( err ) {
-				this.presentAlert('Error', err);
+				reject(err);
+				this.report.sendPostRequest({
+					'subject' : 'Error! - KNL getSinglePost() function',
+					'type' : '',
+					'crawl_link' : '',
+					'post_link' : '',
+					'title' : '',
+					'content' : '',
+					'iframe' : '',
+					'app_link' : '',
+					'notification' : '',
+					'featured_image' : '',
+					'detail_message' : JSON.stringify(err),
+				}).then((data) => {
+				
+				});
 			});
 		});
 	}

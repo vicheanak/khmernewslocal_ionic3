@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.khmernewslocal.app" version="0.0.12" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.khmernewslocal.app" version="0.0.13" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Khmer News Local</name>
-    <description>Multi news sources of Cambodia Newspaperi in Khmer Language</description>
+    <description>Multi news sources of Cambodia Newspaper in Khmer Language</description>
     <author email="vicheanak@gmail.com" href="https://www.khmernewslocal.com/">Vannavy Vicheanak</author>
     <content src="index.html" />
     <access origin="*" />
@@ -118,5 +118,7 @@
         <variable name="MAX_STORE" value="2" />
         <variable name="MIN_BACKGROUND_DURATION" value="30" />
     </plugin>
+    <plugin name="cordova-plugin-inapppurchase-fixed" spec="1.1.2" />
+    <plugin name="cordova-plugin-advanced-http" spec="2.0.1" />
     <engine name="android" spec="7.1.1" />
 </widget>

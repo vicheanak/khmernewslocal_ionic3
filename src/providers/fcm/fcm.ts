@@ -26,65 +26,65 @@ export class FcmProvider {
    // Get permission from the user
   async getToken() {
 
-  	let token;
+    let token;
 
-  	this.firebaseNative.subscribe('news');
+    this.firebaseNative.subscribe('news');
 
-	if (this.platform.is('android')) {
-		token = await this.firebaseNative.getToken()
-	} 
+  if (this.platform.is('android')) {
+    token = await this.firebaseNative.getToken()
+  } 
 
-	if (this.platform.is('ios')) {
-		token = await this.firebaseNative.getToken();
-		await this.firebaseNative.grantPermission();
-	} 
+  if (this.platform.is('ios')) {
+    token = await this.firebaseNative.getToken();
+    await this.firebaseNative.grantPermission();
+  } 
 
-	return this.saveTokenToFirestore(token)
+  return this.saveTokenToFirestore(token)
 
   }
 
   async presentAlert(header, msg) {
-	const alert = await this.alertCtrl.create({
-			message: header,
-			subTitle: msg,
-			buttons: ['OK']
-		});
+  const alert = await this.alertCtrl.create({
+      message: header,
+      subTitle: msg,
+      buttons: ['OK']
+    });
 
-		await alert.present();
-	}
+    await alert.present();
+  }
 
   // Save the token to firestore
   private saveTokenToFirestore(token) {
 
-  	if (!token) return;
+    if (!token) return;
 
-  	
-	const devicesRef = this.afs.collection('devices')
+    
+  const devicesRef = this.afs.collection('devices')
 
-	const docData = { 
-		token,
-		uuid: this.device.uuid,
-		version: this.device.version,
-		platform: this.device.platform,
-		model: this.device.model,
-		manufacturer: this.device.manufacturer,
-		date: this.getFormattedDate()
-	}
+  const docData = { 
+    token,
+    uuid: this.device.uuid,
+    version: this.device.version,
+    platform: this.device.platform,
+    model: this.device.model,
+    manufacturer: this.device.manufacturer,
+    date: this.getFormattedDate()
+  }
 
-	return devicesRef.doc(token).set(docData)
+  return devicesRef.doc(token).set(docData)
 
   }
 
   getFormattedDate() {
-  	let date = new Date();
-  	let str = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +  date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+    let date = new Date();
+    let str = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +  date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
 
-  	return str;
+    return str;
   }
 
   // Listen to incoming FCM messages
   listenToNotifications() {
-  	return this.firebaseNative.onNotificationOpen();
+    return this.firebaseNative.onNotificationOpen();
   }
 
 }

@@ -9,7 +9,8 @@ import { Storage } from '@ionic/storage';
 import { PhotoViewer } from '@ionic-native/photo-viewer';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 import { AdMobPro } from '@ionic-native/admob-pro';
-
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import {ReportProvider} from '../../providers/report/report';
 @Component({
   selector: 'page-detail',
   templateUrl: 'detail.html',
@@ -30,7 +31,9 @@ export class DetailPage {
     private photoViewer: PhotoViewer,
     private youtube: YoutubeVideoPlayer,
     private admob: AdMobPro,
-    public platform: Platform) {
+    public platform: Platform,
+    private iab: InAppBrowser,
+    private report: ReportProvider ) {
 
   }
 
@@ -144,6 +147,11 @@ export class DetailPage {
     .then(() => {this.admob.showBanner(this.admob.AD_POSITION.BOTTOM_CENTER)});
   }
 
+
+  openBrowser(link){
+     this.iab.create(link);
+  }
+
   ionViewWillEnter(){
   	let postId = this.navParams.get('id');
 
@@ -201,7 +209,7 @@ export class DetailPage {
           
         }
 
-        this.showAds();
+        
 
         // http://www.facebook.com/video/embed?video_id=10152463995718183
 
@@ -209,6 +217,7 @@ export class DetailPage {
         
         
     });
+
 
 
 
