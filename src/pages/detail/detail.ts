@@ -161,6 +161,8 @@ export class DetailPage {
         this.post.contents = [];
         this.post.imgs = [];
         this.post.iframes = [];
+        this.post.audios = [];
+        this.post.iframeAudios = [];
         // let regex = new RegExp(/<([^\s]+).*?src="([^"]*?)".*?>(.+?)<\/\1>/gi);
 
         // this.presentAlert('content', this.post.content);
@@ -168,7 +170,35 @@ export class DetailPage {
         
         // let matches = this.post.content.match(/<p>[\S\s]*?<\/p>/gi);
         // this.presentAlert('result P', JSON.stringify(matches));
+
+        // <audio id="whole_sound_news" src="'.$audio.'" style="" "="" controls=""></audio>
+
+        let tmpIframeVideo = document.createElement('div');
+        tmpIframeVideo.innerHTML = this.post.content;
+        let iframeVideoSrc = tmpIframeVideo.getElementsByTagName('iframe');
+        let iframeVideoSrcs = [];
+        for (let i=0, iLen=iframeVideoSrc.length; i<iLen; i++) {
+          let vid = '';
+          
+          vid = '<iframe src="'+iframeVideoSrc[i].src+'?type=audio" frameborder="0" scrolling="no" width="100%" height="144" allowfullscreen></iframe>';
+          
+          this.post.iframeAudios[i] = vid;
+          
+        }
+
+
+        let tmpAudio = document.createElement('div');
+        tmpAudio.innerHTML = this.post.content;
+        let audioSrc = tmpAudio.getElementsByTagName('audio');
         
+        for (let i=0, iLen=audioSrc.length; i<iLen; i++) {
+          this.post.audios[i] = '<audio id="whole_sound_news" src="'+audioSrc[i].src+'" style="" "="" controls=""></audio>';
+
+        }
+
+
+        
+
         let tmpP = document.createElement('div');
         tmpP.innerHTML = this.post.content;
         let pSrc = tmpP.getElementsByTagName('p');

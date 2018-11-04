@@ -33,6 +33,15 @@
 	        </button>
 	      </ion-col>
 	    </ion-row>
+	    
+	    <p style="font-size:18px" class="content" *ngFor="let a of post?.audios">
+			<span [innerHtml]="a"></span>
+		</p>
+
+		 <p style="font-size:18px" class="content" *ngFor="let ia of post?.iframeAudios">
+			<span [innerHtml]="ia"></span>
+		</p>
+
 		<p style="font-size:18px" class="content" *ngFor="let p of post?.contents">
 			{{p}}
 		</p>
