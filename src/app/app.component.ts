@@ -129,35 +129,6 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      this.branch.initSession().then(data => {
-        if (data['+clicked_branch_link']) {
-          
-          let url = data['$canonical_url'];
-          if (url){
-            url = url.split('p=');
-            let id = url[1];
-            this.nav.setRoot(DetailPage, {
-              id: id
-            });
-          }
-        }
-      }).catch((err) => {
-        this.report.sendPostRequest({
-          'subject' : 'Error! - KNLOCAL App Component Fail initSession()',
-          'type' : '',
-          'crawl_link' : '',
-          'post_link' : '',
-          'title' : '',
-          'content' : '',
-          'iframe' : '',
-          'app_link' : '',
-          'notification' : '',
-          'featured_image' : '',
-          'detail_message' : JSON.stringify(err),
-        }).then((data) => {
-        
-        });
-      });
       
 
       this.storage.get('purchased').then((val) => {
@@ -213,22 +184,6 @@ export class MyApp {
         this.presentAlert('Error Token FCM', err);
       }
 
-      this.branch.initSession().then(data => {
-        if (data['+clicked_branch_link']) {
-          
-          
-          let url = data['$canonical_url'];
-          if (url){
-            url = url.split('p=');
-            let id = url[1];
-            this.nav.setRoot(DetailPage, {
-              id: id
-            });
-          }
-          
-          
-        }
-      });
     });
 
 

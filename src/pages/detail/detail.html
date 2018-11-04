@@ -52,8 +52,8 @@
     		ប្រភព៖ <span [innerHtml]="post?.category"></span>
     	</p>
         
-        <p style="font-size:14px; text-decoration: underline; color: blue;" (click)="openBrowser(post)">
-        	Link: <span class="link"  color="primary" >{{post?.link}}</span>
+        <p style="font-size:14px;" (click)="openBrowser(post?.source_link)">
+        	Link: <span style="text-decoration: underline; color: blue;" class="link"  color="primary" >{{post?.source_link}}</span>
         </p>
 		<br>
 		<br>

@@ -43,7 +43,7 @@ export class DetailPage {
 
   async shareFacebook(post){
 		
-  	this.socialSharing.shareViaFacebook(post.title, null, post.app_link).then(() => {
+  	this.socialSharing.shareViaFacebook(post.title, null, post.link).then(() => {
 
   	});
 
@@ -52,7 +52,7 @@ export class DetailPage {
 
   async copy(post){
     
-    this.clipboard.copy(post.title + '\n\n>>> ដោនឡូត Khmer News Live ក្នុង Play Store ឥឡូវនេះ FREE!!! \n' + post.app_link);
+    this.clipboard.copy(post.title + '\n\n' + post.link);
     this.toast.show('Copied...', '1500', 'center').subscribe(
       toast => {
         

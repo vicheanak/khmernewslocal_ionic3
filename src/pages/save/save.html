@@ -17,8 +17,8 @@
 
 	<img class="logo" src="../assets/loading.gif" *ngIf="isReady == false"/>
 
-
-  <ion-card *ngIf="postCount == 0 && isReady == true">
+  
+  <ion-card *ngIf="savedPosts.length == 0">
 
     <ion-card-header>
       អ្នកមិនមានអត្ថបទចំណាំទេ.
@@ -30,7 +30,7 @@
 
   </ion-card>
 
-	<ion-card class="my-card card" no-padding *ngFor="let post of posts">
+	<ion-card class="my-card card" no-padding *ngFor="let post of savedPosts">
       <div (click)="pushDetail(post.id)">
       <img [src]="post?.image" *ngIf="post?.image"/>
       
