@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController, Platform} from 'i
 import { InAppPurchase } from '@ionic-native/in-app-purchase';
 import { Storage } from '@ionic/storage';
 import {ReportProvider} from '../../providers/report/report';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 /**
  * Generated class for the SubscribePage page.
@@ -27,6 +28,7 @@ import {ReportProvider} from '../../providers/report/report';
  		private alertController: AlertController,
  		private platform: Platform,
  		private storage: Storage,
+ 		private iab: InAppBrowser, 
  		private report: ReportProvider) {
  	}
 
@@ -48,7 +50,9 @@ import {ReportProvider} from '../../providers/report/report';
  		await alert.present();
  	}		
 
-
+ 	openBrowser(link){
+ 		this.iab.create(link);
+ 	}
 
  	async subscribe(){
 
